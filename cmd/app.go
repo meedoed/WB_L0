@@ -1,9 +1,10 @@
 package main
 
 import (
-	"WB_L0/internal/app/apiserver"
+	apiserver2 "WB_L0/internal/apiserver"
 	"flag"
 	"github.com/BurntSushi/toml"
+	"github.com/sirupsen/logrus"
 	"log"
 )
 
@@ -18,12 +19,12 @@ func init() {
 func main() {
 	flag.Parse()
 
-	config := apiserver.NewConfig()
+	config := apiserver2.NewConfig()
 	_, err := toml.DecodeFile(configPath, config)
 	if err != nil {
-		log.Fatal(err)
+		logrus.Fatal(err)
 	}
-	s := apiserver.New(config)
+	s := apiserver2.New(config)
 
 	if err = s.Start(); err != nil {
 		log.Fatal(err)

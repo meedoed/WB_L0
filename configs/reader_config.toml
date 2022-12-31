@@ -1,0 +1,3 @@
+address = ":4222"
+cluster = "whschool_cluster"
+client_id = "reader"

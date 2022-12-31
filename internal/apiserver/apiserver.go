@@ -1,7 +1,7 @@
 package apiserver
 
 import (
-	"WB_L0/internal/app/store"
+	"WB_L0/internal/store"
 	"context"
 	"fmt"
 	"github.com/gorilla/mux"
@@ -61,9 +61,16 @@ func (s *APIServer) configureStore() error {
 
 func (s *APIServer) configureRouter() {
 	s.router.HandleFunc("/hello", s.handleHello())
+	s.router.HandleFunc("/get#id", s.handleGetByID()).Methods("GET")
 }
 
 func (s *APIServer) handleHello() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "hello from server!")
+	}
+}
+
+func (s *APIServer) handleGetByID() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "hello from server!")
 	}
